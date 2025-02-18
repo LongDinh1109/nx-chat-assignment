@@ -5,7 +5,12 @@ export const handleLogin = (req: Request, res: Response) => {
   const { username } = req.body;
   if (!username) return res.status(400).json({ error: 'Username is required' });
 
-  return res.json(AuthService.login(username));
+  const result = AuthService.login(username);
+  if (!result) {
+    return res.status(400).json({ error: 'Username is already taken' });
+  }
+
+  return res.json(result);
 };
 
 export const handleLogout = (req: Request, res: Response) => {

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ChatRepository } from '../repositories/chat.repository';
 
 export const AuthService = {
-  login: (username: string): User | null => {
+  login: (username: string, userId?: string): User | null => {
     const existingUser = ChatRepository.getUsersOnline().find(
       (u) => u.username === username
     );
@@ -17,7 +17,7 @@ export const AuthService = {
       return existingUser;
     }
 
-    const newUser: User = { id: uuidv4(), username, online: true };
+    const newUser: User = { id: userId ?? uuidv4(), username, online: false };
     ChatRepository.addUser(newUser);
     return newUser;
   },

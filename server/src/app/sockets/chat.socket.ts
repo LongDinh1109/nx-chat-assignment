@@ -10,8 +10,8 @@ export const ChatSocket = (io: Server) => {
   io.on('connection', (socket: Socket) => {
     console.log(`✅ User connected: ${socket.id}`);
 
-    socket.on('user:login', (username: string) => {
-      const user = AuthService.login(username);
+    socket.on('user:login', ({username, userId}: {username: string, userId: string}) => {
+      const user = AuthService.login(username, userId);
 
       if (!user) {
         socket.emit('error', {
@@ -29,6 +29,18 @@ export const ChatSocket = (io: Server) => {
         data: UsersService.getOnlineUsers(),
       });
     });
+
+    socket.on('user:logout', (userId: string) => {
+      socket.data.user = {};
+      if(userId && userSockets[userId]) {
+        delete userSockets[userId];
+      }
+
+      io.emit('usersOnline', {
+        event: 'usersOnline',
+        data: UsersService.getOnlineUsers(),
+      });
+    })
 
     socket.on('message:send', ({ receiver, message }) => {
       const sender: User = socket.data.user;
