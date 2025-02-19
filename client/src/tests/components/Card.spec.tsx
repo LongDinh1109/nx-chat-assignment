@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import UserCard from '../../components/Card';
 
