@@ -1,5 +1,12 @@
 {
   "name": "@nx-chat-assignment/client",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@nx-chat-assignment/client": "file:"
+  },
+  "scripts": {
+    "test": "vitest --coverage",
+    "coverage": "vitest run --coverage"
+  }
 }

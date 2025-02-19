@@ -1,4 +1,3 @@
-import React from 'react';
 import { User } from 'shared-models/dist';
 type UserCardProps = {
   user: User;

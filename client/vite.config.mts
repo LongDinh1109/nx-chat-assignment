@@ -14,6 +14,11 @@ export default defineConfig({
     port: 4300,
     host: 'localhost',
   },
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./setupTests.ts",
+  },
   plugins: [react(), tailwindcss()],
   // Uncomment this if you are using workers.
   // worker: {

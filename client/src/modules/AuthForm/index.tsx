@@ -15,7 +15,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <div className='h-screen md:w-[50vw] m-auto flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8'>
+      <div className='h-screen m-auto flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8'>
         <Form
           onSubmit={handleSubmit}
           error={null}

@@ -143,7 +143,7 @@ const Dashboard: React.FC = () => {
         </div>
         {/* Sign Out btn*/}
         <Button className="absolute top-1 right-1" onClick={handleLogout}>
-          <div className="hidden text-black pr-2 md:block ">Sign out</div>
+          <div className="hidden text-black pr-2 md:block">Sign out</div>
           <img src={SignoutIcon} width={20} height={20} />
         </Button>
       </div>

@@ -1,7 +1,7 @@
 // Uncomment this line to use CSS modules
 // import styles from './app.module.css';
 
-import { LoginForm } from '../modules/Auth';
+import { LoginForm } from '../modules/AuthForm';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from '../modules/Dashboard';
 
