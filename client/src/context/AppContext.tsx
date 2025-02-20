@@ -115,7 +115,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   useEffect(() => {
     const getOnlineUsers = async () => {
       try {
-        const res = await fetch(`${api}/users/online`, {
+        const res = await fetch(`${api}/api/users/online`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       const getMessages = async () => {
         try {
           const res = await fetch(
-            `${api}/messages/history/${userId}/${receiver.id}`,
+            `${api}/api/messages/history/${userId}/${receiver.id}`,
             {
               method: 'GET',
               headers: {
@@ -186,7 +186,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const handleLogin = async (username: string) => {
     setIsLoading(true);
     try {
-      const res = await fetch(`${api}/auth/login`, {
+      const res = await fetch(`${api}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -216,7 +216,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const handleLogout = async () => {
     const userId = localStorage.getItem('user:token');
     try {
-      const res = await fetch(`${api}/auth/logout`, {
+      const res = await fetch(`${api}/api/auth/logout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
