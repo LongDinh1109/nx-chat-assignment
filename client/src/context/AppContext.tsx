@@ -24,6 +24,7 @@ interface AppContextType {
   onlineUsers: User[];
   receiver: User | null;
   messages: Message[];
+  isLoading: boolean;
   handleLogin: (username: string) => void;
   handleLogout: () => void;
   handleSelectReceiver: (user: User) => void;
@@ -43,6 +44,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const [receiver, setReceiver] = useState<User | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [onlineUsers, setOnlineUsers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -123,7 +125,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         if (!data) throw new Error(data || 'Failed to get online users');
         return data;
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
     getOnlineUsers().then((data) => {
@@ -174,7 +176,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
           setMessages(formatedData);
         } catch (error) {
-          console.error(error);
+          console.log(error);
         }
       };
       getMessages();
@@ -182,6 +184,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   }, [receiver]);
 
   const handleLogin = async (username: string) => {
+    setIsLoading(true);
     try {
       const res = await fetch(`${api}/auth/login`, {
         method: 'POST',
@@ -203,14 +206,14 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         });
         setUser(data);
       }
+      setIsLoading(false);
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      setIsLoading(false);
     }
   };
 
   const handleLogout = async () => {
-    console.log(api);
-    
     const userId = localStorage.getItem('user:token');
     try {
       const res = await fetch(`${api}/auth/logout`, {
@@ -256,6 +259,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     onlineUsers,
     receiver,
     messages,
+    isLoading,
     handleLogin,
     handleLogout,
     handleSelectReceiver,

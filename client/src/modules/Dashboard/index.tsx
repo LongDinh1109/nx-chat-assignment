@@ -78,6 +78,7 @@ const Dashboard: React.FC = () => {
                   <UserCard
                     user={user}
                     className="flex-row-reverse gap-3 p-2 bg-amber-200 rounded-lg"
+                    isMyUser={true}
                   />
                 )}
               </div>
