@@ -16,7 +16,7 @@ export default function MessageCard({
       <div
         className={`w-fit max-w-[40%] py-2 px-4 rounded-b-lg break-words ${
           isSender
-            ? 'bg-amber-300 rounded-tl-lg ml-auto'
+            ? 'bg-amber-400 rounded-tl-lg ml-auto'
             : 'bg-amber-200 rounded-tr-lg'
         }`}
       >
